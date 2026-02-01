@@ -3,12 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Message for Gunjan</title>
-    
+    <title>For Chinnu 🎀</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,500&family=Lora:wght@400;500&display=swap" rel="stylesheet">
-    
     <style>
-        /* CSS: The "Old Money" Aesthetic */
         :root {
             --cream: #fdfaf5;
             --burgundy: #630d0d;
@@ -30,27 +27,19 @@
 
         .card {
             background: white;
-            padding: 3rem;
+            padding: 2.5rem;
             max-width: 450px;
-            width: 90%;
+            width: 85%;
             text-align: center;
-            border: 1px solid rgba(197, 160, 89, 0.3); /* Subtle gold border */
+            border: 1px solid rgba(197, 160, 89, 0.3);
             box-shadow: 0 20px 40px rgba(0,0,0,0.05);
             position: relative;
-        }
-
-        .card::before {
-            content: "";
-            position: absolute;
-            top: 10px; left: 10px; right: 10px; bottom: 10px;
-            border: 1px solid rgba(197, 160, 89, 0.2);
-            pointer-events: none;
         }
 
         .header-text {
             font-family: 'Playfair Display', serif;
             font-style: italic;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             letter-spacing: 3px;
             color: var(--gold);
             margin-bottom: 1rem;
@@ -59,26 +48,33 @@
 
         h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            margin: 0 0 1.5rem 0;
+            font-size: 2.2rem;
+            margin: 0 0 1rem 0;
             font-weight: 500;
         }
 
-        .couple-photo {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
+        .gallery {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
             margin-bottom: 1.5rem;
-            border: 3px solid var(--cream);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 2px;
+            border: 1px solid #eee;
+            /* Old money aesthetic filter */
+            filter: contrast(1.05) sepia(5%);
         }
 
         .message {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             line-height: 1.6;
-            margin-bottom: 2rem;
-            color: #555;
+            margin-bottom: 1.5rem;
+            color: #444;
         }
 
         .btn-container {
@@ -107,25 +103,22 @@
 
         #yesBtn:hover {
             background-color: #801a1a;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(99, 13, 13, 0.3);
+            transform: scale(1.05);
         }
 
         #noBtn {
             position: relative;
-            z-index: 10;
+            z-index: 100;
         }
 
-        .hidden {
-            display: none;
-        }
+        .hidden { display: none; }
 
         #success {
-            animation: fadeIn 1.5s ease;
+            animation: fadeIn 1.2s ease-in-out;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
         }
     </style>
@@ -136,16 +129,19 @@
         <div id="proposal-content">
             <p class="header-text">A Private Invitation</p>
             
-            <img src="https://via.placeholder.com/150" alt="Us" class="couple-photo">
+            <div class="gallery">
+                <img src="photo1.jpg" alt="Chinnu 1">
+                <img src="photo2.jpg" alt="Chinnu 2">
+            </div>
             
-            <h1>For Gunjan,</h1>
+            <h1>For Chinnu 🎀</h1>
             
             <p class="message">
-                You’ve shown me what it means to be truly cared for. 
-                I’d be the luckiest person to have you by my side.
+                Every moment with you is a favorite memory of mine. 
+                I'd love to make many more starting with this February.
             </p>
 
-            <p style="font-style: italic; margin-bottom: 20px;">Will you be my Valentine?</p>
+            <p style="font-style: italic; margin-bottom: 25px;">Will you be my Valentine?</p>
 
             <div class="btn-container">
                 <button id="yesBtn">Yes</button>
@@ -155,7 +151,10 @@
 
         <div id="success" class="hidden">
             <h1 style="color: var(--burgundy);">It's a Date! ❤️</h1>
-            <p class="message">I promise to make it a day as beautiful as you are. See you soon, Gunjan.</p>
+            <p class="message" style="font-style: italic;">
+                Thanks cuteass, I promise to make it a day as beautiful as you are.
+            </p>
+            <p class="header-text">See you soon, Chinnu</p>
         </div>
     </div>
 
@@ -167,43 +166,40 @@
         const proposalContent = document.getElementById('proposal-content');
         const successSection = document.getElementById('success');
 
-        // Logic to make the "No" button move away
+        // The Runaway Button Logic
         noBtn.addEventListener('mouseover', () => {
-            const padding = 20;
-            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - padding);
-            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - padding);
-            
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - 50);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - 50);
             noBtn.style.position = 'fixed';
             noBtn.style.left = x + 'px';
             noBtn.style.top = y + 'px';
         });
 
-        // "Yes" Button Click
+        // Yes Button Interaction
         yesBtn.addEventListener('click', () => {
             proposalContent.classList.add('hidden');
             successSection.classList.remove('hidden');
             
-            // Launch Confetti
             const duration = 5 * 1000;
-            const end = Date.now() + duration;
+            const animationEnd = Date.now() + duration;
 
             (function frame() {
                 confetti({
-                    particleCount: 3,
+                    particleCount: 2,
                     angle: 60,
                     spread: 55,
                     origin: { x: 0 },
                     colors: ['#630d0d', '#c5a059']
                 });
                 confetti({
-                    particleCount: 3,
+                    particleCount: 2,
                     angle: 120,
                     spread: 55,
                     origin: { x: 1 },
                     colors: ['#630d0d', '#c5a059']
                 });
 
-                if (Date.now() < end) {
+                if (Date.now() < animationEnd) {
                     requestAnimationFrame(frame);
                 }
             }());
