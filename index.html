@@ -3,203 +3,262 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For Chinnu 🎀</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,500&family=Lora:wght@400;500&display=swap" rel="stylesheet">
+    <title>Hey Chinnu! 🎀</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500&family=Pacifico&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --cream: #fdfaf5;
-            --burgundy: #630d0d;
-            --gold: #c5a059;
-            --text: #2d2d2d;
+            --pink: #ffb7c5;
+            --dark-pink: #ff6b81;
+            --red: #ff4757;
+            --white: #ffffff;
+            --text: #535c68;
         }
 
         body {
-            background-color: var(--cream);
-            color: var(--text);
-            font-family: 'Lora', serif;
+            background-color: var(--pink);
+            background-image: radial-gradient(#ffcad4 1px, transparent 1px);
+            background-size: 20px 20px;
+            font-family: 'Fredoka', sans-serif; /* Round, cute font */
             margin: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            overflow-x: hidden;
+            overflow: hidden;
         }
 
-        .card {
-            background: white;
-            padding: 2.5rem;
-            max-width: 450px;
-            width: 85%;
-            text-align: center;
-            border: 1px solid rgba(197, 160, 89, 0.3);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+        .container {
             position: relative;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2.5rem;
+            border-radius: 25px; /* Super round corners */
+            box-shadow: 0 10px 25px rgba(255, 107, 129, 0.2);
+            text-align: center;
+            max-width: 400px;
+            width: 85%;
+            z-index: 10;
         }
 
-        .header-text {
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            font-size: 0.8rem;
-            letter-spacing: 3px;
-            color: var(--gold);
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-        }
-
+        /* Cute Title */
         h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.2rem;
-            margin: 0 0 1rem 0;
-            font-weight: 500;
+            font-family: 'Pacifico', cursive; /* Handwritten style */
+            color: var(--red);
+            font-size: 2.5rem;
+            margin: 0 0 10px 0;
+            text-shadow: 2px 2px 0px rgba(0,0,0,0.05);
         }
 
+        /* Polaroid Style Gallery */
         .gallery {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin-bottom: 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            transform: rotate(-2deg); /* Tilted for cuteness */
+        }
+
+        .photo-frame {
+            background: white;
+            padding: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 4px;
+            transform: rotate(var(--rotation));
+            transition: transform 0.3s ease;
+        }
+
+        .photo-frame:hover {
+            transform: scale(1.1) rotate(0deg);
+            z-index: 5;
         }
 
         .gallery img {
-            width: 100%;
-            height: 180px;
+            width: 130px;
+            height: 130px;
             object-fit: cover;
-            border-radius: 2px;
-            border: 1px solid #eee;
-            /* Old money aesthetic filter */
-            filter: contrast(1.05) sepia(5%);
+            border-radius: 4px;
         }
 
-        .message {
-            font-size: 1.05rem;
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-            color: #444;
+        p {
+            color: var(--text);
+            font-size: 1.1rem;
+            line-height: 1.5;
+            margin-bottom: 20px;
         }
 
-        .btn-container {
+        /* Buttons */
+        .btn-group {
             display: flex;
             justify-content: center;
-            gap: 20px;
-            height: 50px;
-            align-items: center;
+            gap: 15px;
+            margin-top: 20px;
         }
 
         button {
-            padding: 12px 30px;
-            font-family: 'Lora', serif;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 50px; /* Pill shape */
+            font-family: 'Fredoka', sans-serif;
             font-size: 1rem;
             cursor: pointer;
-            transition: all 0.3s ease;
-            border: 1px solid var(--text);
-            background: transparent;
+            transition: transform 0.2s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
         #yesBtn {
-            background-color: var(--burgundy);
+            background-color: var(--red);
             color: white;
-            border: none;
         }
 
         #yesBtn:hover {
-            background-color: #801a1a;
-            transform: scale(1.05);
+            background-color: #e84118;
+            transform: scale(1.1);
         }
 
         #noBtn {
-            position: relative;
-            z-index: 100;
+            background-color: white;
+            color: var(--text);
+            border: 2px solid #eee;
+        }
+
+        /* Floating Hearts Animation Background */
+        .floating-hearts {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .heart {
+            position: absolute;
+            bottom: -10px;
+            color: rgba(255, 255, 255, 0.6);
+            animation: floatUp 6s linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-100vh); opacity: 0; }
         }
 
         .hidden { display: none; }
-
-        #success {
-            animation: fadeIn 1.2s ease-in-out;
+        
+        #success-msg {
+            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(15px); }
-            to { opacity: 1; transform: translateY(0); }
+        @keyframes popIn {
+            0% { transform: scale(0.5); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
         }
     </style>
 </head>
 <body>
 
-    <div class="card">
-        <div id="proposal-content">
-            <p class="header-text">A Private Invitation</p>
-            
+    <div class="floating-hearts" id="bg-hearts"></div>
+
+    <div class="container">
+        <div id="main-content">
             <div class="gallery">
-                <img src="photo1.jpg" alt="Chinnu 1">
-                <img src="photo2.jpg" alt="Chinnu 2">
+                <div class="photo-frame" style="--rotation: -5deg;">
+                    <img src="photo1.jpg" alt="Cute us 1">
+                </div>
+                <div class="photo-frame" style="--rotation: 5deg;">
+                    <img src="photo2.jpg" alt="Cute us 2">
+                </div>
             </div>
+
+            <h1>Hey Chinnu! 🎀</h1>
             
-            <h1>For Chinnu 🎀</h1>
+            <p>
+                Just wanted to say that you make my world 10x better just by existing. 🌎💖
+            </p>
             
-            <p class="message">
-                Every moment with you is a favorite memory of mine. 
-                I'd love to make many more starting with this February.
+            <p>
+                So I have a very important question... 👉👈
             </p>
 
-            <p style="font-style: italic; margin-bottom: 25px;">Will you be my Valentine?</p>
+            <h2 style="color: var(--dark-pink); font-size: 1.4rem;">Will you be my Valentine? 🥺🌹</h2>
 
-            <div class="btn-container">
-                <button id="yesBtn">Yes</button>
-                <button id="noBtn">No</button>
+            <div class="btn-group">
+                <button id="yesBtn">YESSS! 💖</button>
+                <button id="noBtn">No 🙄</button>
             </div>
         </div>
 
-        <div id="success" class="hidden">
-            <h1 style="color: var(--burgundy);">It's a Date! ❤️</h1>
-            <p class="message" style="font-style: italic;">
-                Thanks cuteass, I promise to make it a day as beautiful as you are.
+        <div id="success-msg" class="hidden">
+            <h1>YAYYY! 🥳💖</h1>
+            <img src="https://media.giphy.com/media/26BRv0ThflsHCqDrG/giphy.gif" alt="Happy Cat" style="width: 150px; border-radius: 10px; margin: 10px 0;">
+            <p style="font-size: 1.2rem; color: var(--red); font-weight: bold;">
+                Thanks cuteass! 😽💕
             </p>
-            <p class="header-text">See you soon, Chinnu</p>
+            <p>
+                It’s officially a date! Can't wait to see you. <br>
+                (Screenshot this and send it to me! 📸)
+            </p>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
     <script>
+        /* Background Hearts Creator */
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.fontSize = Math.random() * 20 + 10 + 'px';
+            heart.style.animationDuration = Math.random() * 3 + 2 + 's';
+            document.getElementById('bg-hearts').appendChild(heart);
+            
+            setTimeout(() => { heart.remove(); }, 5000);
+        }
+        setInterval(createHeart, 300);
+
+        /* Button Logic */
         const noBtn = document.getElementById('noBtn');
         const yesBtn = document.getElementById('yesBtn');
-        const proposalContent = document.getElementById('proposal-content');
-        const successSection = document.getElementById('success');
+        const mainContent = document.getElementById('main-content');
+        const successMsg = document.getElementById('success-msg');
 
-        // The Runaway Button Logic
+        // Make the No button run away faster
         noBtn.addEventListener('mouseover', () => {
-            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - 50);
-            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - 50);
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - 20);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - 20);
             noBtn.style.position = 'fixed';
             noBtn.style.left = x + 'px';
             noBtn.style.top = y + 'px';
         });
 
-        // Yes Button Interaction
+        // Yes Button Click
         yesBtn.addEventListener('click', () => {
-            proposalContent.classList.add('hidden');
-            successSection.classList.remove('hidden');
-            
-            const duration = 5 * 1000;
-            const animationEnd = Date.now() + duration;
+            mainContent.classList.add('hidden');
+            successMsg.classList.remove('hidden');
+
+            // Massive Confetti Explosion
+            var duration = 3 * 1000;
+            var end = Date.now() + duration;
 
             (function frame() {
                 confetti({
-                    particleCount: 2,
+                    particleCount: 5,
                     angle: 60,
                     spread: 55,
                     origin: { x: 0 },
-                    colors: ['#630d0d', '#c5a059']
+                    colors: ['#ff4757', '#ff6b81', '#ffffff']
                 });
                 confetti({
-                    particleCount: 2,
+                    particleCount: 5,
                     angle: 120,
                     spread: 55,
                     origin: { x: 1 },
-                    colors: ['#630d0d', '#c5a059']
+                    colors: ['#ff4757', '#ff6b81', '#ffffff']
                 });
 
-                if (Date.now() < animationEnd) {
+                if (Date.now() < end) {
                     requestAnimationFrame(frame);
                 }
             }());
